@@ -16,8 +16,11 @@ function Login() {
       }),
     })
       .then((response) => response.json())
+
       .then((data) => localStorage.setItem("token", data.token))
+
       .catch((error) => alert.error(error))
+      
       .finally(() => (window.location.href = "/"));
   };
   return (

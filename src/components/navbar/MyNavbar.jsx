@@ -14,14 +14,9 @@ function MyNavbar() {
     fetchWithAuth(`${apiUrl}/api/auth/me`, { method: "GET",
       headers: { Authorization: `Bearer ${token}` }
     })
-      .then((response) => {
-      if (!response.ok) {
-        throw new Error('Errore nella risposta');
-      }
-      return response.json();
-    })
-    .then((data) => setUser(data))
-    .catch((error) => console.error("Errore nella fetch dell'utente:", error));
+      .then((response) => response.json())
+      .then((data) => setUser(data))
+      .catch((error) => console.error("Errore nella fetch dell'utente:", error));
   }, []);
 
   if (['/', '*', '/login', '/register'].includes(location.pathname)) {
@@ -44,7 +39,7 @@ function MyNavbar() {
           {user && (
             <Link to="/user">
               <img
-                src={"https://imebehavioralhealth.com/wp-content/uploads/2021/10/user-icon-placeholder-1.png"}
+                src={user.avatar || "https://imebehavioralhealth.com/wp-content/uploads/2021/10/user-icon-placeholder-1.png"}
                 alt="user"
                 height={50}
                 className="rounded-circle"

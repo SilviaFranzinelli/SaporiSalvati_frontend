@@ -1,5 +1,6 @@
 import { Button, Form, FormControl, FormLabel } from "react-bootstrap";
 
+
 function Registrazione() {
   function handlesubmit(event) {
     event.preventDefault();
@@ -16,11 +17,14 @@ function Registrazione() {
       .then((resp) => {
         if (resp.ok) {
           alert("Registrazione avvenuta con successo");
-          window.location.href = "/login";
+          window.location.href = "/";
         } else {
           alert("Errore nella registrazione");
         }
       })
+
+      .then((data) => localStorage.setItem("token", data.token))
+
       .catch((error) => {
         console.error("Errore nella fetch della registrazione", error);
         alert("Errore durante la registrazione");
