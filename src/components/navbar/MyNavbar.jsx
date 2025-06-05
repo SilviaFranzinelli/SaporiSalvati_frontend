@@ -26,13 +26,9 @@ function MyNavbar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary px-3">
       <Container>
-        <Link to="/">
-          <img src="./assets/titolo.png" alt="Logo" height={50} />
-        </Link>
-        
-        <Navbar.Collapse id="basic-navbar-nav">
+          <img src="src/assets/titolo.png" alt="Logo" height={50} />
           <Nav className="me-auto">
-            <Link to="/" className="nav-link">Home</Link>
+            <Link to="/home" className="nav-link">Home</Link>
             <Link to="/favorites" className="nav-link">Preferiti</Link>
             {user && <Link to="/user" className="nav-link">Profilo</Link>}
           </Nav>
@@ -46,7 +42,6 @@ function MyNavbar() {
               />
             </Link>
           )}
-        </Navbar.Collapse>
       </Container>
     </Navbar>
   );

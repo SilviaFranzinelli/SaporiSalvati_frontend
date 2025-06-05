@@ -9,6 +9,7 @@ import AddRecipeManual from "./components/ricette/AddRecipeManual";
 import AddRecipeUrl from "./components/ricette/AddRecipeUrl"
 
 import AccessPage from "./components/login/AccessPage";
+import FavoritesPage from "./components/ricette/FavoritePage";
 
 function App() {
   
@@ -28,7 +29,7 @@ function App() {
           <Route path="/add/url" element={<AddRecipeUrl />} />
           <Route path="/add/scelta" element={<AddRecipeChoice/>} />
           <Route path="/" element={<AccessPage />} />
-
+          <Route path="/preferiti" element={<FavoritesPage/>} />
         </Routes>
       </BrowserRouter>
     </>

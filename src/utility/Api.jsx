@@ -9,6 +9,9 @@ export const fetchWithAuth = (url, options = {}) => {
         headers['Authorization'] = 'Bearer ' + token;
     }
 
-    return fetch(url, options);
+    return fetch(url, 
+        {options:
+            headers, ...headers
+        });
   
 }; 

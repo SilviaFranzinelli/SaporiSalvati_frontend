@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import RecipeCard from "../ricette/RecipeCard";
 
-const MyHomePage = ({ recipes, onDelete, onFavorite, onUpdate }) => {
+const MyHomePage = ({ recipes = [], onDelete, onFavorite, onUpdate }) => {
   const [filter, setFilter] = useState('');
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ const MyHomePage = ({ recipes, onDelete, onFavorite, onUpdate }) => {
     <div className="container mt-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2>Ricette</h2>
-        <Link className="btn btn-primary" to="/AddRecipeChoice">Aggiungi Ricetta</Link>
+        <Link className="btn btn-primary" to="/add/scelta">Aggiungi Ricetta</Link>
       </div>
       <div className="mb-3">
         <select className="form-select" onChange={(e) => setFilter(e.target.value)} value={filter}>
