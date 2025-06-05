@@ -29,7 +29,7 @@ function MyNavbar() {
           <img src="src/assets/titolo.png" alt="Logo" height={50} />
           <Nav className="me-auto">
             <Link to="/home" className="nav-link">Home</Link>
-            <Link to="/favorites" className="nav-link">Preferiti</Link>
+            <Link to="/preferiti" className="nav-link">Preferiti</Link>
             {user && <Link to="/user" className="nav-link">Profilo</Link>}
           </Nav>
           {user && (
