@@ -1,23 +1,43 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import RecipeCard from "../ricette/RecipeCard";
+import { fetchWithAuth } from '../../utility/Api';
 
-const MyHomePage = ({ recipes = [], onDelete, onFavorite, onUpdate }) => {
-  const [filter, setFilter] = useState('');
+const MyHomePage = () => {
+  const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const apiUrl = import.meta.env.VITE_API_URL;
+
+  const fetchRecipes = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetchWithAuth(`${apiUrl}/api/user/recipes/myrecipes`);
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(`Errore nel caricare le ricette: ${response.status} - ${errorData || response.statusText}`);
+      }
+      const data = await response.json();
+      setRecipes(data);
+    } catch (err) {
+      console.error("Errore fetchRecipes:", err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [apiUrl]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       navigate("/access");
+    } else {
+      fetchRecipes()
     }
-  }, [navigate]);
-
-  const filteredRecipes = filter
-    ? recipes.filter(recipe => recipe.category === filter)
-    : recipes;
-
-  const categories = [...new Set(recipes.map(recipe => recipe.category))];
+    
+  }, [navigate, fetchRecipes]);
 
   return (
     <div className="container mt-4">
@@ -25,21 +45,13 @@ const MyHomePage = ({ recipes = [], onDelete, onFavorite, onUpdate }) => {
         <h2>Ricette</h2>
         <Link className="btn btn-primary" to="/add/scelta">Aggiungi Ricetta</Link>
       </div>
-      <div className="mb-3">
-        <select className="form-select" onChange={(e) => setFilter(e.target.value)} value={filter}>
-          <option value="">Tutte le categorie</option>
-          {categories.map(category => <option key={category}>{category}</option>)}
-        </select>
-      </div>
+
+      {loading && <p>Caricamento in corso...</p>}
+      {error && <p className="text-danger">Errore: {error}</p>}
+
       <div className="row">
-        {filteredRecipes.map(recipe => (
-          <RecipeCard
-            key={recipe.id}
-            recipe={recipe}
-            onDelete={onDelete}
-            onFavorite={onFavorite}
-            onUpdate={onUpdate}
-          />
+        {recipes.map(recipe => (
+          <RecipeCard key={recipe.id} recipe={recipe} />
         ))}
       </div>
     </div>

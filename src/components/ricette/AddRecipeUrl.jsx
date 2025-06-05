@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchWithAuth } from '../../utility/Api';
 
-const AddRecipeFromURL = ({ onAdd }) => {
+const AddRecipeFromURL = () => {
     const [url, setUrl] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -22,11 +22,11 @@ const AddRecipeFromURL = ({ onAdd }) => {
     }
 
     try {
-      const response = await fetchWithAuth(`${apiUrl}/parse?url=${encodeURIComponent(url)}`, { method: 'POST' });
+      const response = await fetchWithAuth(`${apiUrl}/api/parse?url=${encodeURIComponent(url)}`, { 
+        method: 'POST', 
+        headers: {'Content-Type' : 'application/json'},});
       if (!response.ok) throw new Error();
-      const recipe = await response.json();
-      onAdd(recipe);
-      navigate('/');
+      navigate('/home');
     } catch {
       setError('Errore nella trascrizione: link non valido o sito non accessibile.');
     }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { fetchWithAuth } from '../utility/Api';
+import { fetchWithAuth } from '../../utility/Api';
 
 const RecipeDetail = ({ onUpdate, onDelete }) => {
   const { id } = useParams();
@@ -31,7 +31,7 @@ const RecipeDetail = ({ onUpdate, onDelete }) => {
     const handleDelete = () => {
         if (window.confirm("Sei sicuro di voler eliminare definitivamente la ricetta?")) {
             if (onDelete) onDelete(recipe.id);
-            navigate('/');
+            navigate('/home');
         }
     };
 

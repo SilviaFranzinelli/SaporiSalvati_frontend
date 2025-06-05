@@ -1,17 +1,14 @@
 
 export const fetchWithAuth = (url, options = {}) => {
     const token = localStorage.getItem('token');
-    const headers = {
-        'Content-Type': 'application/json',
-        ...options.headers,  
-    };
+
     if (token) {
-        headers['Authorization'] = 'Bearer ' + token;
+        options.headers = {
+            ...options.headers,
+            Authorization: "Bearer " + token
+        }
     }
 
-    return fetch(url, 
-        {options:
-            headers, ...headers
-        });
-  
-}; 
+    return fetch(url, options);
+
+};

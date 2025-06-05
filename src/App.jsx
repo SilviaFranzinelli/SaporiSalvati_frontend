@@ -7,6 +7,7 @@ import MyNavBar from "./components/navbar/MyNavbar";
 import AddRecipeChoice from "./components/ricette/AddRecipeChoice";
 import AddRecipeManual from "./components/ricette/AddRecipeManual";
 import AddRecipeUrl from "./components/ricette/AddRecipeUrl"
+import RecipeDetail from "./components/ricette/RecipeDetail";
 
 import AccessPage from "./components/login/AccessPage";
 import FavoritesPage from "./components/ricette/FavoritePage";
@@ -30,6 +31,7 @@ function App() {
           <Route path="/add/scelta" element={<AddRecipeChoice/>} />
           <Route path="/" element={<AccessPage />} />
           <Route path="/preferiti" element={<FavoritesPage/>} />
+          <Route path="/ricetta/:id" element={<RecipeDetail />} />
         </Routes>
       </BrowserRouter>
     </>

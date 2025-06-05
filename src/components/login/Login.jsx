@@ -17,11 +17,14 @@ function Login() {
     })
       .then((response) => response.json())
 
-      .then((data) => localStorage.setItem("token", data.token))
+      .then((data) => {
+        localStorage.setItem("token", data.token)
+        // window.location.href = "/"
+      })
 
       .catch((error) => alert.error(error))
       
-      .finally(() => (window.location.href = "/"));
+    
   };
   return (
     <div className= "container d-flex flex-column align-items-center mt-5">

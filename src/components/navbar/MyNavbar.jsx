@@ -11,9 +11,7 @@ function MyNavbar() {
     const token = localStorage.getItem("token");
     const apiUrl = import.meta.env.VITE_API_URL;
 
-    fetchWithAuth(`${apiUrl}/api/auth/me`, { method: "GET",
-      headers: { Authorization: `Bearer ${token}` }
-    })
+    fetchWithAuth(`${apiUrl}/api/auth/me`, {})
       .then((response) => response.json())
       .then((data) => setUser(data))
       .catch((error) => console.error("Errore nella fetch dell'utente:", error));
@@ -30,18 +28,7 @@ function MyNavbar() {
           <Nav className="me-auto">
             <Link to="/home" className="nav-link">Home</Link>
             <Link to="/preferiti" className="nav-link">Preferiti</Link>
-            {user && <Link to="/user" className="nav-link">Profilo</Link>}
           </Nav>
-          {user && (
-            <Link to="/user">
-              <img
-                src={user.avatar || "https://imebehavioralhealth.com/wp-content/uploads/2021/10/user-icon-placeholder-1.png"}
-                alt="user"
-                height={50}
-                className="rounded-circle"
-              />
-            </Link>
-          )}
       </Container>
     </Navbar>
   );
