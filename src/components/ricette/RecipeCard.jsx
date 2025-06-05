@@ -1,3 +1,4 @@
+import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const RecipeCard = ({ recipe, onFavorite, readOnly }) => {
@@ -13,32 +14,39 @@ const RecipeCard = ({ recipe, onFavorite, readOnly }) => {
   };
 
   return (
-    <div className="card m-2" style={{ width: '18rem', cursor: 'pointer' }} onClick={handleClick}>
+    <Card 
+      style={{ width: '18rem', cursor: 'pointer', margin: '0.5rem' }} 
+      onClick={handleClick}
+    >
       {recipe.imageUrl && (
-        <img src={recipe.imageUrl} className="card-img-top" alt={recipe.title} style={{ height: '200px', objectFit: 'cover' }} />
+        <Card.Img 
+          variant="top" 
+          src={recipe.imageUrl} 
+          alt={recipe.title} 
+          style={{ height: '200px', objectFit: 'cover' }} 
+        />
       )}
-      <div className="card-body d-flex justify-content-between align-items-center">
-        <h5 className="card-title mb-0">{recipe.title}</h5>
-        {onFavorite && !readOnly && (
-            <button
-                onClick={handleFavorite}
-                className="btn btn-link"
-                style={{ color: recipe.favorite ? 'black' : 'red', fontSize: '1.5rem' }}
-                aria-label={recipe.favorite ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"}
-                title={recipe.favorite ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"}
-                >
-                <i className={recipe.favorite ? "bi bi-heart" : "bi bi-heart-fill"}></i>
-            </button>
-
-        )}
-        {readOnly && (
+      <Card.Body className="d-flex justify-content-between align-items-center">
+        <Card.Title className="mb-0">{recipe.title}</Card.Title>
+        {onFavorite && !readOnly ? (
+        <Button 
+          variant="link" 
+          onClick={(e) => { e.stopPropagation(); handleFavorite(); }}
+          style={{ color: recipe.favorite ? 'black' : 'red', fontSize: '1.5rem' }}
+          aria-label={recipe.favorite ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"}
+          title={recipe.favorite ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"}
+        >
+          <i className={recipe.favorite ? "bi bi-heart" : "bi bi-heart-fill"}></i>
+        </Button>
+        ) : readOnly ? (
           <span style={{ color: recipe.favorite ? 'black' : 'red', fontSize: '1.5rem' }}>
             <i className={recipe.favorite ? "bi bi-heart" : "bi bi-heart-fill"}></i>
           </span>
-        )}
-      </div>
-    </div>
+        ) : null}
+      </Card.Body>
+    </Card>
   );
+  
 };
 
 export default RecipeCard;
