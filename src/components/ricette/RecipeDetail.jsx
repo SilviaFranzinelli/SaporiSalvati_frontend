@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link} from 'react-router-dom';
 import { fetchWithAuth } from '../../utility/Api';
 
 const RecipeDetail = () => {
@@ -7,7 +7,7 @@ const RecipeDetail = () => {
   const [recipe, setRecipe] = useState(null);
   const [editing, setEditing] = useState(false);
   const [edited, setEdited] = useState({});
-  const navigate = useNavigate();
+
 
 
   useEffect(() => {
@@ -29,27 +29,11 @@ const RecipeDetail = () => {
       });
   }, [id]);
 
-    
-  const handleDelete = () => {
-    if (window.confirm("Sei sicuro di voler eliminare definitivamente la ricetta?")) {
-      const apiUrl = import.meta.env.VITE_API_URL; 
-
-      fetchWithAuth(`${apiUrl}/api/user/recipes/${recipe.id}`, { method: 'DELETE' })
-        .then(res => {
-          if (!res.ok) throw new Error('Errore durante l\'eliminazione della ricetta');
-          navigate('/home', { state: { deleted: true }});
-        })
-        .catch(error => {
-          console.error("Errore eliminazione ricetta:", error);
-          alert("Errore durante l'eliminazione della ricetta.");
-        });
-    }
-  };
 
   const handleUpdate = () => {
     const apiUrl = import.meta.env.VITE_API_URL;
 
-    fetchWithAuth(`${apiUrl}/api/user/recipes/${recipe.id}`, {
+    fetchWithAuth(`${apiUrl}/api/user/recipes/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -93,7 +77,6 @@ const RecipeDetail = () => {
           <h4>Istruzioni</h4>
           <pre>{recipe.instructions}</pre>
           <button className="btn btn-primary me-2" onClick={() => setEditing(true)}>Modifica</button>
-          <button className="btn btn-danger" onClick={handleDelete}>Elimina</button>
         </>
       )}
     </div>
