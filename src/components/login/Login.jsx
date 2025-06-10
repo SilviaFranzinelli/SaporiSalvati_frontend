@@ -1,6 +1,9 @@
 import { Button, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+const navigate = useNavigate();
+
   const handlesubmit = (event) => {
     event.preventDefault();
     const apiUrl = import.meta.env.VITE_API_URL;
@@ -19,7 +22,7 @@ function Login() {
 
       .then((data) => {
         localStorage.setItem("token", data.token)
-        // window.location.href = "/"
+        navigate("/home");
       })
 
       .catch((error) => alert.error(error))
@@ -27,15 +30,17 @@ function Login() {
     
   };
   return (
-    <div className= "container d-flex flex-column align-items-center mt-5">
-      <Form onSubmit={(event) => handlesubmit(event)} >
+    <div className= "d-flex justify-content-center align-items-center vh-100">
+      <div className="text-center">
         <h1>Login</h1> 
-        <Form.Label>username</Form.Label>
-        <Form.Control type="text" />
-        <Form.Label>password</Form.Label>
-        <Form.Control type="password" />
-        <Button type="submit">login</Button>
-      </Form>
+        <Form onSubmit={(event) => handlesubmit(event)} >
+          <Form.Label>Username</Form.Label>
+          <Form.Control type="text" placeholder="Username" required/>
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" required />
+          <Button type="submit" className="btn mt-3">Login</Button>
+        </Form>
+      </div>
     </div>
   );
 }

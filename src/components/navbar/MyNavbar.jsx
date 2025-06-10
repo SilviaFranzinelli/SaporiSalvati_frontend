@@ -22,11 +22,11 @@ function MyNavbar() {
 }
   
   return (
-    <Navbar expand="lg" className="bg-body-tertiary px-3">
-      <Container>
-          <img src="src/assets/titolo.png" alt="Logo" height={50} />
-          <Nav className="me-auto">
-            <Link to="/home" className="nav-link">Home</Link>
+    <Navbar expand="lg" className="custom-navbar px-3">
+      <Container >
+          <img src="src/assets/titolo.png" alt="Logo" className='h-100' style={{width: 300}} />
+          <Nav className="d-flex flex-row">
+            <Link to="/home" className="nav-link me-5">Home</Link>
             <Link to="/preferiti" className="nav-link">Preferiti</Link>
           </Nav>
       </Container>

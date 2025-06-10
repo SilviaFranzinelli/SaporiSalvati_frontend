@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import MyHomePage from "./components/home/MyHomePage";
 import Login from "./components/login/Login";
@@ -8,7 +8,6 @@ import AddRecipeChoice from "./components/ricette/AddRecipeChoice";
 import AddRecipeManual from "./components/ricette/AddRecipeManual";
 import AddRecipeUrl from "./components/ricette/AddRecipeUrl"
 import RecipeDetail from "./components/ricette/RecipeDetail";
-
 import AccessPage from "./components/login/AccessPage";
 import FavoritesPage from "./components/ricette/FavoritePage";
 

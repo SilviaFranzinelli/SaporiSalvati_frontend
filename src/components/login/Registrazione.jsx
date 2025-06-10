@@ -1,7 +1,10 @@
 import { Button, Form, FormControl, FormLabel } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 
 function Registrazione() {
+  const navigate = useNavigate();
+
   function handlesubmit(event) {
     event.preventDefault();
     const username = event.target[0].value;
@@ -17,13 +20,15 @@ function Registrazione() {
       .then((resp) => {
         if (resp.ok) {
           alert("Registrazione avvenuta con successo");
-          window.location.href = "/";
         } else {
           alert("Errore nella registrazione");
         }
       })
 
-      .then((data) => localStorage.setItem("token", data.token))
+      .then((data) => {
+        localStorage.setItem("token", data.token)
+        navigate("/home")
+      })
 
       .catch((error) => {
         console.error("Errore nella fetch della registrazione", error);
@@ -32,15 +37,18 @@ function Registrazione() {
   }
 
   return (
-    <div className="container mt-4 d-flex flex-column align-items-center mt-5" >
-      <h1>Registrazione</h1>
-      <Form onSubmit={handlesubmit}>
-        <FormLabel>Username</FormLabel>
-        <FormControl type="text" placeholder="Username" required />
-        <FormLabel>Password</FormLabel>
-        <FormControl type="password" placeholder="Password" required />
-        <Button type="submit" className="mt-3">Registrati</Button>
-      </Form>
+    <div className="d-flex justify-content-center align-items-center vh-100" >
+      <div className="text-center">
+        <h1>Registrazione</h1>
+        <Form onSubmit={handlesubmit}>
+          <FormLabel>Username</FormLabel>
+          <FormControl type="text" placeholder="Username" required />
+          <FormLabel>Password</FormLabel>
+          <FormControl type="password" placeholder="Password" required />
+          <Button type="submit" className="btn mt-3">Registrati</Button>
+        </Form>
+      </div>
+      
     </div>
   );
 }

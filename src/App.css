@@ -1,3 +1,61 @@
+body {
+  background-color: #FEEFEC ;
+}
 
+.custom-navbar {
+  background-color: #f5d5cf;
+}
 
+.nav-link {
+  font-size: 20px;
+  color: #8464b3;
+}
 
+h2, h1 {
+  font-size: 3em;
+  line-height: 1.1;
+  color: #8464b3;
+}
+
+.btn {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  background-color: #BEADD7;
+   color: #120e18;
+}
+.btn:hover {
+  border-color: #8464b3;
+  background-color: #ab90d3;
+}
+
+.card{
+  background-color: #FFF7DB;
+  border-color: #ecdfaf;
+}
+
+.cardimg {
+  border-radius: 20px;
+  padding: 6px;
+}
+
+.detail {
+  background-color: #FFF7DB;
+  border-color: #ecdfaf;
+  border-radius: 20px;
+  
+}
+
+.favorite-btn {
+  background-color: transparent !important;
+  border: none !important;
+  color: inherit;
+  font-size: 1.5rem;
+  padding: 0;
+  line-height: 1;
+}

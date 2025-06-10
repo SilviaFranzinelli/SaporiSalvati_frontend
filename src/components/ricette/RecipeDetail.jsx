@@ -70,13 +70,15 @@ const RecipeDetail = () => {
         </>
       ) : (
         <>
-          <h2>{recipe.title}</h2>
-          {recipe.imageUrl && <img src={recipe.imageUrl} alt={recipe.title} className="img-fluid mb-3" />}
-          <h4>Ingredienti</h4>
-          <pre>{recipe.ingredients}</pre>
-          <h4>Istruzioni</h4>
-          <pre>{recipe.instructions}</pre>
-          <button className="btn btn-primary me-2" onClick={() => setEditing(true)}>Modifica</button>
+          <div className='detail p-5'>
+            <h2>{recipe.title}</h2>
+            {recipe.imageUrl && <img src={recipe.imageUrl || "src/assets/placeholder.png"} alt={recipe.title} className="img-fluid mb-3" />}
+            <h4>Ingredienti</h4>
+            <p>{recipe.ingredients}</p>
+            <h4>Istruzioni</h4>
+            <p>{recipe.instructions}</p>
+            <button className="btn btn-primary me-2" onClick={() => setEditing(true)}>Modifica</button>
+          </div>
         </>
       )}
     </div>

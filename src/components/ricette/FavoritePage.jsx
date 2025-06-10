@@ -60,7 +60,6 @@ function FavoritesPage() {
                 <Spinner animation="border" role="status">
                     <span className="visually-hidden">Caricamento...</span>
                 </Spinner>
-                <p>Caricamento ricette preferite...</p>
             </Container>
         );
     }
@@ -79,7 +78,7 @@ function FavoritesPage() {
 
     return (
         <Container className="mt-4">
-            <h1 className="mb-4">Le Mie Ricette Preferite</h1>
+            <h2 className="mb-4">Le Mie Ricette Preferite</h2>
             {favoriteRecipes.length === 0 ? (
                 <Alert variant="info">
                     Non hai ancora aggiunto nessuna ricetta ai tuoi preferiti. Inizia ad esplorare e clicca sul cuore!
@@ -91,7 +90,7 @@ function FavoritesPage() {
                             <RecipeCard
                                 recipe={{ ...recipe, favorite: true }} 
                                 onFavorite={() => handleRemoveFromFavorites(recipe.id)} 
-                                readOnly={false} 
+                                isReadOnly={false}
                             />
                         </Col>
                     ))}
