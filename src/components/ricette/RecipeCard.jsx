@@ -1,5 +1,6 @@
 import { Card, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import placeholderImage from "../../assets/placeholder.png"
 
 const RecipeCard = ({ recipe, onFavorite }) => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const RecipeCard = ({ recipe, onFavorite }) => {
       {recipe.imageUrl && (
         <Card.Img 
           variant="top" 
-          src={recipe.imageUrl || "src/assets/placeholder.png"} 
+          src={recipe.imageUrl || placeholderImage} 
           alt={recipe.title} 
           style={{ height: '200px', objectFit: 'cover' }} 
           className='cardimg mt-2'

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link} from 'react-router-dom';
 import { fetchWithAuth } from '../../utility/Api';
+import placeholderImage from "../../assets/placeholder.png"
 
 const RecipeDetail = () => {
   const { id } = useParams();
@@ -55,6 +56,8 @@ const RecipeDetail = () => {
   };
 
   if (!recipe) return <div>Caricamento...</div>;
+  
+  
 
   return (
     <div className="container mt-4">
@@ -72,9 +75,14 @@ const RecipeDetail = () => {
         <>
           <div className='detail p-5'>
             <h2>{recipe.title}</h2>
-            {recipe.imageUrl && <img src={recipe.imageUrl || "src/assets/placeholder.png"} alt={recipe.title} className="img-fluid mb-3" />}
+            {recipe.imageUrl && <img src={recipe.imageUrl || placeholderImage} alt={recipe.title} className="detailimg img-fluid mb-3" />}
             <h4>Ingredienti</h4>
-            <p>{recipe.ingredients}</p>
+            <ul>
+              {recipe.ingredients && recipe.ingredients.split('\n').map((ingredient, index) => (
+              ingredient.trim() !== '' && <li key={index}>{ingredient.trim()}</li>
+              ))}
+            </ul>
+            
             <h4>Istruzioni</h4>
             <p>{recipe.instructions}</p>
             <button className="btn btn-primary me-2" onClick={() => setEditing(true)}>Modifica</button>

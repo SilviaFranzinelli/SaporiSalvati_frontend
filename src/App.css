@@ -17,6 +17,10 @@ h2, h1 {
   color: #8464b3;
 }
 
+h4 {
+  color: #8464b3;
+}
+
 .btn {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -49,6 +53,12 @@ h2, h1 {
   border-color: #ecdfaf;
   border-radius: 20px;
   
+}
+
+.detailimg {
+  width: 250px;
+  border-radius: 20px;
+  margin-top: 15px;
 }
 
 .favorite-btn {
